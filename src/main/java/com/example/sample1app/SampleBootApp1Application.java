@@ -34,58 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class SampleBootApp1Application {
-	//	public class SampleBootApp1Application implements ApplicationRunner {
 
-	//	public static void main(String[] args) {
-	//		//SpringApplicationクラスはSpringBootアプリケーションとしての基本的機能がまとめられている。
-	//		//		runはアプリケーションを起動するためのメソッド
-	//		//		引数には実行するクラスのClassインスタンスとパラメータとして渡すデータ
-	//		//		いまのところ、＠SpringBootApplicationを付けたクラスをそのまま記述する。
-	//
-	//		//SpringApplicationインスタンスを生成
-	//		//引数として、アプリケーションとして実行するクラスを選択
-	//		//つまり、SpringBootApplicationアノテーションを付けたクラスのうち、実行したいクラスのClassインスタンスを引数として渡す
-	//		//今回はSampleBootApp1ApplicationのClassインスタンスを引数として渡す
-	//		SpringApplication app = new SpringApplication(SampleBootApp1Application.class);
-	//		//setBannerModeをオフに設定することで、SprinApplicationの起動時の処理をカスタマイズできる。
-	//		app.setBannerMode(Mode.OFF);
-	//		app.setHeadless(false);
-	//		app.run(args);
-	//		//SpringApplication.run(SampleBootApp1Application.class, args);
-	//	}
-
-	/* -------CommandLineRunnerでアプリケーションプログラム作成-------------*/
-	//	@Override
-	//	public void run(String[] args) {
-	//		System.out.println("+-------------------+");
-	//		System.out.println("| this is CommandLine Runner proguram. |");
-	//		System.out.println("+-------------------+");
-	//		System.out.println("[" + String.join(", ", args) + "]");
-	//	}
-
-	/* -------ApplicationRunnerでアプリケーションプログラム作成-------------*/
-	//	@Override
-	//	public void run(ApplicationArguments args) {
-	//		System.out.println("+-------------------+");
-	//		System.out.println("| this is Application Runner program. |");
-	//		System.out.println("+-------------------+");
-	//		System.out.println(args.getOptionNames());
-	//		System.out.println(args.getOptionValues("aaa"));
-	//		System.out.println(args.getNonOptionArgs());
-	//		System.out.println(Arrays.asList(args.getSourceArgs()));
-	//	}
-
-	/* -------UIアプリケーションの実行-------------*/
-	//	@Override
-	//	public void run(ApplicationArguments args) {
-	//		JFrame frame = new JFrame("Spring Boot Swing App");
-	//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	//		frame.setSize(300, 200);
-	//		frame.add(new JLabel("Spring Boot Application."));
-	//		frame.setVisible(true);
-	//	}
-
-	/* -------RESTControllerの実装例-------------*/
 	public static void main(String[] args) {
 		//		SpringApplication.run(SampleBootApp1Application.class, args);
 
