@@ -1,0 +1,51 @@
+//Graldeに追加されるプラグインの設定
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.5'
+	id 'io.spring.dependency-management' version '1.1.3'
+}
+
+//group：グループID
+//version:アプリのバージョン
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+//ソースコードの互換性バージョン
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+//リポジトリの設定
+//リポジトリ：開発で利用するパッケージが登録されている場所
+//Gradleでは指定されたリポジトリのサーバーにアクセスし、使用するパッケージ類をダウンロードして自動的に組み込む
+//デフォルトはmavenCentral()。Mavenのリポジトリの情報を出力するメソッド。
+//Maven CentralリポジトリにはSpring関係のパッケージも全てあるため、これさえあれば必要なパッケージを利用可能。
+repositories {
+	mavenCentral()
+}
+
+//プロジェクトで必要なパッケージ類を記述する場所。
+//ここにあるパッケージ類がGradleによりリポジトリからダウンロードされてプロジェクトにインストールされる。
+//使用パッケージの追加が必要な場合、このdependeciesに書き込む。
+dependencies {
+	//spring-boot-starter-web：Webアプリ開発のためのパッケージ。
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	//Spring Bootアプリのユニットテスト(単体テスト)のためのパッケージ。
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
