@@ -5,8 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.Data;
 
 /* -------デフォルトのアプリケーション-------------*/
 //@SpringBootApplication
@@ -45,27 +46,26 @@ public class SampleBootApp1Application {
 
 	}
 
-	@RequestMapping("/")
-	public String index() {
-		return "Hello, My Spring Boot 3!!!";
-	}
-
 	/* -------RESTControllerの実装例2-------------*/
-	String[][] data = {
-			{ "noname", "no email address", "0" },
-			{ "taro", "taro@exam.com", "39" },
-			{ "hanako", "hanako@exam.com", "28" },
-			{ "jiro", "jiro@exam.com", "17" },
-
+	DataObject[] data = {
+			new DataObject("noname", "no email address", 0),
+			new DataObject("taro", "taro@exam.com", 39),
+			new DataObject("hanako", "hanako@exam.com", 28),
+			new DataObject("jiro", "jiro@exam.com", 17)
 	};
 
 	@GetMapping("/{num}")
-	public String index(@PathVariable int num) {
+	public DataObject index(@PathVariable int num) {
 		int n = num < 0 ? 0 : num >= data.length ? 0 : num;
-		String[] item = data[n];
-		String msg = "ID=%s, {name: %s, mail: %s, age: %s}";
-		return String.format(msg, num, item[0], item[1], item[2]);
+		return data[n];
 
 	}
+}
+
+@Data
+class DataObject {
+	private final String name;
+	private final String mail;
+	private final int age;
 
 }
