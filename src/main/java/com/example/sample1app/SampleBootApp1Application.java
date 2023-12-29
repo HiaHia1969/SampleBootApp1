@@ -3,10 +3,12 @@ package com.example.sample1app;
 import org.springframework.boot.Banner.Mode;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Data;
 
 /* -------デフォルトのアプリケーション-------------*/
@@ -54,18 +56,22 @@ public class SampleBootApp1Application {
 			new DataObject("jiro", "jiro@exam.com", 17)
 	};
 
-	//	@GetMapping("/{num}")
-	//	public DataObject index(@PathVariable int num) {
-	//		int n = num < 0 ? 0 : num >= data.length ? 0 : num;
-	//		return data[n];
-	//
-	//	}
+	@RequestMapping("/")
+	public String index(HttpServletRequest req, HttpServletResponse res) {
 
-	@GetMapping("/{num}/name")
-	public String index(@PathVariable int num) {
-		int n = num < 0 ? 0 : num >= data.length ? 0 : num;
-		String name = "名前は「%s」と申します";
-		return String.format(name, data[n].getName());
+		res.setContentType(MediaType.TEXT_HTML_VALUE);
+		String context = """
+				<html>
+					<head>
+						<title>Sample App</title>
+					</head>
+					<body>
+						<h1>Sample App</h1>
+						<p>This is sample page!!!</p>
+					</body>
+				</html>
+				""";
+		return context;
 	}
 }
 
