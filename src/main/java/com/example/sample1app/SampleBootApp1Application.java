@@ -54,11 +54,18 @@ public class SampleBootApp1Application {
 			new DataObject("jiro", "jiro@exam.com", 17)
 	};
 
-	@GetMapping("/{num}")
-	public DataObject index(@PathVariable int num) {
-		int n = num < 0 ? 0 : num >= data.length ? 0 : num;
-		return data[n];
+	//	@GetMapping("/{num}")
+	//	public DataObject index(@PathVariable int num) {
+	//		int n = num < 0 ? 0 : num >= data.length ? 0 : num;
+	//		return data[n];
+	//
+	//	}
 
+	@GetMapping("/{num}/name")
+	public String index(@PathVariable int num) {
+		int n = num < 0 ? 0 : num >= data.length ? 0 : num;
+		String name = "名前は「%s」と申します";
+		return String.format(name, data[n].getName());
 	}
 }
 
