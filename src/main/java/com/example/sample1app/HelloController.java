@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloController {
@@ -12,6 +13,7 @@ public class HelloController {
 	public String index(Model model) {
 		model.addAttribute("msg",
 				"これはコントローラーに用意したメッセージです");
+
 		return "index";
 	}
 
@@ -19,21 +21,20 @@ public class HelloController {
 	public String button(Model model) {
 		model.addAttribute("msg",
 				"buttonのページです");
+		model.addAttribute("msg1", "デモメッセージです");
 		return "button";
 	}
 
 	@RequestMapping("/{num}")
-	public String num(@PathVariable int num, Model model) {
+	public ModelAndView num(@PathVariable int num, ModelAndView mav) {
 		int res = 0;
-		//		for (int i = 1; i <= num; i++) {
-		//			res += i;
-		//		}
-		while (res < num) {
-			res++;
+		for (int i = 0; i <= num; i++) {
+			res += i;
 		}
 
-		model.addAttribute("msg",
-				"total: " + res);
-		return "num";
+		mav.addObject("msg", num + "までの合計値を表示します。");
+		mav.addObject("content", "total: " + res);
+		mav.setViewName("num");
+		return mav;
 	}
 }
