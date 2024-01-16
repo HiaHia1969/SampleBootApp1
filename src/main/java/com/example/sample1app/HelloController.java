@@ -46,4 +46,21 @@ public class HelloController {
 		mav.setViewName("num");
 		return mav;
 	}
+
+	@RequestMapping(value = "/name", method = RequestMethod.GET)
+	public ModelAndView name(ModelAndView mav) {
+		mav.addObject("msg", "名前を書いてください");
+		return mav;
+	}
+
+	@RequestMapping(value = "/name", method = RequestMethod.POST)
+	public ModelAndView name(ModelAndView mav, @RequestParam("text1") String str) {
+		String msg = String.format("あなたの名前は%sですね。", str);
+
+		mav.addObject("msg", msg);
+		mav.addObject("value", str);
+		mav.setViewName("name");
+		return mav;
+	}
+
 }
