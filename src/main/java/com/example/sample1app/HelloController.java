@@ -2,23 +2,24 @@ package com.example.sample1app;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping("/")
 	public ModelAndView index(ModelAndView mav) {
 		mav.addObject("msg", "e-mailを記入してください。");
 		mav.setViewName("index");
 		return mav;
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@PostMapping("/")
 	public ModelAndView form(@RequestParam("text1") String str, ModelAndView mav) {
 		mav.addObject("msg", "あなたのメールアドレスは「" + str + "」ですね。");
 		mav.addObject("value", str);
@@ -47,13 +48,13 @@ public class HelloController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/name", method = RequestMethod.GET)
+	@GetMapping("/name")
 	public ModelAndView name(ModelAndView mav) {
 		mav.addObject("msg", "名前を書いてください");
 		return mav;
 	}
 
-	@RequestMapping(value = "/name", method = RequestMethod.POST)
+	@PostMapping("/name")
 	public ModelAndView name(ModelAndView mav, @RequestParam("text1") String str) {
 		String msg = String.format("あなたの名前は%sですね。", str);
 
