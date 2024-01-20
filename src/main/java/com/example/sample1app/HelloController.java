@@ -1,5 +1,9 @@
 package com.example.sample1app;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,6 +65,65 @@ public class HelloController {
 		mav.addObject("value", str);
 		mav.setViewName("name");
 		return mav;
+	}
+
+	@GetMapping("/otherform")
+	public ModelAndView otherform(ModelAndView mav) {
+		mav.addObject("msg", "please input each form section");
+		mav.setViewName("/otherform");
+		return mav;
+	}
+
+	@PostMapping("/otherform")
+	public ModelAndView otherform(
+			@RequestParam(value = "check1", required = false) boolean check1,
+			@RequestParam(value = "gender", required = false) String gender,
+			@RequestParam(value = "select1", required = false) String OS,
+			@RequestParam(value = "select2", required = false) String[] phones,
+			ModelAndView mav) {
+
+		String res = "";
+		StringBuilder selectStr = new StringBuilder();
+		List<String> arrayList = new ArrayList<String>(Arrays.asList(phones));
+		arrayList.replaceAll((phone) -> phone += ", ");
+		((ArrayList<String>) arrayList).trimToSize();
+		//例外処理
+		try {
+			res = String.format("check: %b radio: %s select: %s select2: ", check1, gender, OS);
+		} catch (NullPointerException e) {
+		}
+
+		//例外処理
+		try {
+			//			for (String phone : phones) {
+			//				selectStr += String.format("%s, ", phone);
+			//			}
+			if (phones.length > 0) {
+
+				arrayList.forEach(phone -> {
+					selectStr.append(phone);
+					//					selectStr.append(", ");
+				});
+				res += selectStr.toString();
+			}
+
+		} catch (Exception e) {
+			res = "null";
+		}
+
+		mav.addObject("msg", res);
+		mav.setViewName("/otherform");
+		return mav;
+	}
+
+	@GetMapping("/other")
+	public String other() {
+		return "redirect:/";
+	}
+
+	@GetMapping("/home")
+	public String home() {
+		return "forward:/";
 	}
 
 }
