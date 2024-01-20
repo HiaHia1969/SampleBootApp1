@@ -137,4 +137,20 @@ public class HelloController {
 		return new ModelAndView("forward:/otherform");
 	}
 
+	@GetMapping("/displayPage")
+	public ModelAndView displayPage(ModelAndView mav) {
+		mav.addObject("msg", "データを表示します。");
+		List<String> arrayList = new ArrayList<String>() {
+			{
+				add("One");
+				add("Two");
+				add("Three");
+			}
+		};
+
+		mav.addObject("data", arrayList.toArray());
+		mav.setViewName("displayPage");
+		return mav;
+	}
+
 }
