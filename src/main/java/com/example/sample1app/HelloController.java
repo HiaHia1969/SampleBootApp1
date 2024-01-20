@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +26,7 @@ public class HelloController {
 		return mav;
 	}
 
-	@RequestMapping("/button")
+	@GetMapping("/button")
 	public String button(Model model) {
 		model.addAttribute("msg",
 				"buttonのページです");
@@ -35,7 +34,7 @@ public class HelloController {
 		return "button";
 	}
 
-	@RequestMapping("/{num}")
+	@GetMapping("/{num}")
 	public ModelAndView num(@PathVariable int num, ModelAndView mav) {
 		int res = 0;
 		for (int i = 0; i <= num; i++) {
