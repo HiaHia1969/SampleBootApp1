@@ -126,4 +126,14 @@ public class HelloController {
 		return "forward:/";
 	}
 
+	@GetMapping("/otherform2")
+	public ModelAndView oh2(ModelAndView mav) {
+		return new ModelAndView("redirect:/otherform");
+	}
+
+	@GetMapping("/otherform3")
+	public ModelAndView oh3(ModelAndView mav) {
+		return new ModelAndView("forward:/otherform");
+	}
+
 }
