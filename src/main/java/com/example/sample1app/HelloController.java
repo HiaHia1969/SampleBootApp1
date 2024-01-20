@@ -111,6 +111,7 @@ public class HelloController {
 			res = "null";
 		}
 
+		mav.addObject("check1", check1);
 		mav.addObject("msg", res);
 		mav.setViewName("/otherform");
 		return mav;

@@ -12,6 +12,8 @@
 <body>
 	<h1 class="display-4 mb-4">other form page</h1>
 	<p th:text="${msg}"></p>
+	<p class="fs-4" th:if="${check1}">チェックボックスが選択されています。</p>
+	<p class="fs-4" th:unless="${check1}">チェックボックスが選択されていません。</p>
 
 	<div class="ht6 alert alert-primary">
 		<form method="post" action="/otherform">
