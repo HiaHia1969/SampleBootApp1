@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<title>month page</title>
+</head>
+
+<body class="container">
+	<h1 class="display4-mb-4">month pageです。</h1>
+	<p th:text="${msg}"></p>
+	<p th:text="'text'">text</p>
+	<p th:text="'text\''">text</p>
+
+	<div th:switch="${month}">
+		<p th:case=1 class="alert alert-primary" th:text="${month} + 月は正月です。"></p>
+		<p th:case=2 class="alert alert-info" th:text="${month} + 月は冬です。"></p>
+		<p th:case=3 class="alert alert-danger" th:text="${month} + 月は春です。"></p>
+		<p th:case=4 class="alert alert-danger" th:text="${month} + 月は春です。"></p>
+		<p th:case=5 class="alert alert-danger" th:text="${month} + 月は春です。"></p>
+		<p th:case=6 class="alert alert-success" th:text="${month} + 月は夏です。"></p>
+		<p th:case=7 class="alert alert-success" th:text="${month} + 月は夏です。"></p>
+		<p th:case=8 class="alert alert-success" th:text="${month} + 月は夏です。"></p>
+		<p th:case=9 class="alert alert-warning" th:text="${month} + 月は秋です。"></p>
+		<p th:case=10 class="alert alert-warning" th:text="${month} + 月は秋です。"></p>
+		<p th:case=11 class="alert alert-warning" th:text="${month} + 月は秋です。"></p>
+		<p th:case=12 class="alert alert-info" th:text="${month} + 月は冬です。"></p>
+		<p th:case=* class="alert alert-dark" th:text="すいません、わかりません。"></p>
+	</div>
+	<div th:switch="${month}%4">
+		<p th:case=0 class="alert alert-primary" th:text="${month}+は4で割り切れます。"></p>
+		<p th:case=1 class="alert alert-info" th:text="${month}+は4で割ると1余ります。"></p>
+		<p th:case=2 class="alert alert-warning" th:text="${month}+は4で割ると2余ります。"></p>
+		<p th:case=3 class="alert alert-danger" th:text="${month}+は4で3余ります。"></p>
+	</div>
+	
+
+
+</body>
+
+</html>

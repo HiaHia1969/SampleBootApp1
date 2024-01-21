@@ -140,6 +140,7 @@ public class HelloController {
 	@GetMapping("/displayPage")
 	public ModelAndView displayPage(ModelAndView mav) {
 		mav.addObject("msg", "データを表示します。");
+		mav.addObject("msg2", "2つ目のデータを表示します。");
 		List<String> arrayList = new ArrayList<String>() {
 			{
 				add("One");
@@ -148,8 +149,24 @@ public class HelloController {
 			}
 		};
 
-		mav.addObject("data", arrayList.toArray());
+		List<String> arrayList2 = new ArrayList<String>();
+
+		for (int i = 0; i < 10; i++) {
+			arrayList2.add(Integer.toString(i));
+		}
+
+		mav.addObject("data", arrayList);
+		mav.addObject("data2", arrayList2);
 		mav.setViewName("displayPage");
+		return mav;
+	}
+
+	@GetMapping("/月/{month}")
+	public ModelAndView month(@PathVariable int month, ModelAndView mav) {
+		String msg = String.format("%n月の季節は？", month);
+		mav.addObject("month", month);
+		mav.addObject("msg", msg);
+		mav.setViewName("/month");
 		return mav;
 	}
 
