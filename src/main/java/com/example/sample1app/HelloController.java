@@ -1,11 +1,16 @@
 package com.example.sample1app;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.samskivert.mustache.Mustache.Lambda;
+import com.samskivert.mustache.Template.Fragment;
 
 @Controller
 public class HelloController {
@@ -64,4 +69,23 @@ public class HelloController {
 		mav.addObject("msg", "dataに格納されている要素を表示します");
 		return mav;
 	}
+
+	@GetMapping("/lambda")
+	public ModelAndView lambdaFormula(ModelAndView mav) {
+		mav.setViewName("/lambda");
+		mav.addObject("title", "ラムダ式のサンプル");
+		mav.addObject("msg", "これはラムダ式を利用してメッセージを表示したものです。");
+
+		Lambda fn = new Lambda() {
+			@Override
+			public void execute(Fragment frag, Writer out) throws IOException {
+				out.write("<div class=\"alert alert-primary\">");
+				frag.execute(out);
+				out.write("</div>");
+			}
+		};
+		mav.addObject("fn", fn);
+		return mav;
+	}
+
 }
