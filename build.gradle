@@ -36,6 +36,7 @@ repositories {
 dependencies {
 	//spring-boot-starter-web：Webアプリ開発のためのパッケージ。
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	//Spring Bootアプリのユニットテスト(単体テスト)のためのパッケージ。
