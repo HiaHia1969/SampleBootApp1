@@ -16,7 +16,7 @@ public class HelloController {
 		flag = !flag;
 		mav.setViewName("index");
 		mav.addObject("title", "Groovy templates");
-		mav.addObject("msg", "This is sample messsage!!");
+		mav.addObject("msg", "レイアウト機能を使ったサンプルです。");
 		mav.addObject("flag", flag);
 		mav.addObject("data", data);
 		mav.addObject("data2", data2);
